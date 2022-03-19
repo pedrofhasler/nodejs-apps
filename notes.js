@@ -12,7 +12,7 @@ const addNote = (title, body) => {
 
     })
 
-    if (!duplicateNote){
+    if (!duplicateNote) {
 
         notes.push({
             title: title,
@@ -27,7 +27,7 @@ const addNote = (title, body) => {
 
     }
 
-    
+
 
     saveNotes(notes)
 }
@@ -72,11 +72,11 @@ const removeNote = (title) => {
     if (notes.length > notesToKeep.length) {
 
         console.log(chalk.green.inverse('Note removed!'))
-    
+
     } else {
-    
+
         console.log(chalk.red.inverse('No note found!'))
-    
+
     }
 
     saveNotes(notesToKeep)
