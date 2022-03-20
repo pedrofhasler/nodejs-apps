@@ -2,15 +2,35 @@ import request from 'postman-request'
 import { geocode } from './utils/geocode.js'
 import { forecast } from './utils/forecast.js'
 
-geocode('New York', (error, data) => {
+const address = process.argv[2]
 
-    console.log('Error', error)
-    console.log('Data', data)
+if (!address) {
 
-})
+    console.log('Please provide a address!')
 
-forecast(-75.7088, 44.1545, (error, data) => {
-    console.log('Error', error)
-    console.log('Data', data)
-})
+} else {
+
+    geocode(address, (error, { longitude, latitude, location } = {}) => {
+
+        if (error) {
+            return console.log(error)
+        }
+
+        forecast(latitude, longitude, (error, forecastData) => {
+
+            if (error) {
+                return console.log(error)
+            }
+
+            console.log(location)
+            console.log(forecastData)
+
+        })
+    })
+
+}
+
+
+
+
 
