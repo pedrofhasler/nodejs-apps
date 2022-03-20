@@ -10,7 +10,7 @@ if (!address) {
 
 } else {
 
-    geocode(address, (error, { longitude, latitude, location } = {}) => {
+    geocode('address', (error, { longitude, latitude, location } = {}) => {
 
         if (error) {
             return console.log(error)

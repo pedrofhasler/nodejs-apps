@@ -5,11 +5,13 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/app.js"
   },
   "author": "Pedro Hasler",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.3",
     "postman-request": "^2.88.1-postman.31"
   }
 }
