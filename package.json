@@ -1,0 +1,15 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "A real time wheater app",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pedro Hasler",
+  "license": "ISC",
+  "dependencies": {
+    "postman-request": "^2.88.1-postman.31"
+  }
+}
