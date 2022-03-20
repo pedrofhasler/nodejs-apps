@@ -60,21 +60,20 @@ app.get('/help/*', (req, res) => {
 
 })
 
-app.get('/weather', (req, res) => {
+// app.get('/weather', (req, res) => {
 
-    res.render('404', {
-        title: '404',
-        message: 'Page not found',
-        name: 'Pedro Hasler'
-    })
 
-})
+// })
 
 
 
 //Get for any page that doesn't exist
 app.get('*', (req, res) => {
-    res.send('My 404 page')
+    res.render('page_404', {
+        title: '404',
+        message: 'Page not found',
+        name: 'Pedro Hasler'
+    })
 })
 
 app.listen(PORT, () => {
