@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import hbs from 'hbs'
+import { geocode } from './utils/geocode.js';
+import { forecast } from './utils/forecast.js';
 
 const PORT = 3000
 const app = express()
@@ -60,10 +62,40 @@ app.get('/help/*', (req, res) => {
 
 })
 
-// app.get('/weather', (req, res) => {
+app.get('/weather', (req, res) => {
 
+    const address = req.query.address
 
-// })
+    if (!address) {
+        return res.send({
+            error: 'You must provide a address!'
+        })
+    }
+
+    console.log(address)
+
+    geocode(address, (error, { latitude, longitude, location } = {}) => {
+        if (error) {
+            return res.send({ error })
+        }
+
+        console.log(longitude, latitude, location)
+
+        forecast(latitude, longitude, (error, forecastData = "") => {
+            console.log(forecastData)
+            if (error) {
+                return res.send({ error })
+            }
+
+            return res.send({
+                location,
+                forecastData,
+                address
+            })
+
+        })
+    })
+})
 
 
 
