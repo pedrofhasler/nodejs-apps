@@ -11,9 +11,9 @@ const app = express()
 // Define paths for Express config
 const __dirname = fileURLToPath(
     import.meta.url)
-const publicDirPath = path.join(__dirname, '../public')
-const viewsPath = path.join(__dirname, '../template/views')
-const partialsPath = path.join(__dirname, '../template/partials')
+const publicDirPath = path.join(__dirname, '../../public')
+const viewsPath = path.join(__dirname, '../../template/views')
+const partialsPath = path.join(__dirname, '../../template/partials')
 
 // Setup handlebars engine and views location
 app.set('view engine', 'hbs')
