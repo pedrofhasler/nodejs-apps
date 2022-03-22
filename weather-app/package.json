@@ -1,0 +1,37 @@
+{
+<<<<<<< HEAD
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "A note application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pedro Hasler",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "validator": "^10.8.0",
+    "yargs": "^17.3.1"
+  }
+}
+=======
+    "name": "weather-app",
+    "version": "1.0.0",
+    "description": "A real time wheater app",
+    "main": "app.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon src/app.js -e js,hbs"
+    },
+    "author": "Pedro Hasler",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.3",
+        "hbs": "^4.2.0",
+        "postman-request": "^2.88.1-postman.31"
+    }
+}
+>>>>>>> develop
