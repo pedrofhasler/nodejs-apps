@@ -1,0 +1,22 @@
+{
+    "dependencies": {
+        "express": "^4.17.3",
+        "mongodb": "^4.4.1",
+        "mongoose": "^6.2.7",
+        "validator": "^13.7.0"
+    },
+    "name": "task-app",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "A task app",
+    "main": "app.js",
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js"
+    },
+    "author": "Pedro Hasler",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
+}
