@@ -53,7 +53,7 @@ export const userRouter = (app) => {
         }
 
         try {
-            const user = await user.findById(req.params)
+            const user = await User.findById(req.params.id)
 
             updates.forEach(element => user[element] = req.body[element])
 
