@@ -53,7 +53,13 @@ export const userRouter = (app) => {
         }
 
         try {
-            const user = await User.findByIdAndUpdate(res.params.id, req.body, { new: true, runValidators: true })
+            const user = await user.findById(req.params)
+
+            updates.forEach(element => user[element] = req.body[element])
+
+            await user.save()
+
+            //const user = await User.findByIdAndUpdate(res.params.id, req.body, { new: true, runValidators: true })
 
             if (!user) {
                 return res.status(404).send()
