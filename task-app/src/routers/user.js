@@ -57,23 +57,7 @@ export const userRouter = (app) => {
         res.send(req.user)
     })
 
-    router.get('/:id', async(req, res) => {
-        const _id = req.params.id
-
-        try {
-            const user = await User.findById(_id)
-
-            if (!user) {
-                return res.status(404).send
-            }
-
-            res.send(user)
-        } catch (error) {
-            res.status(500)
-        }
-    })
-
-    router.patch('/:id', async(req, res) => {
+    router.patch('/me', auth, async(req, res) => {
         const updates = Objects.keys(req.body)
         const allowedUpdates = ['name', 'email', 'password', 'age']
         const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
@@ -83,34 +67,28 @@ export const userRouter = (app) => {
         }
 
         try {
-            const user = await User.findById(req.params.id)
+            updates.forEach(element => req.user[element] = req.body[element])
 
-            updates.forEach(element => user[element] = req.body[element])
+            await req.user.save()
 
-            await user.save()
-
-            //const user = await User.findByIdAndUpdate(res.params.id, req.body, { new: true, runValidators: true })
-
-            if (!user) {
-                return res.status(404).send()
-            }
-
-            res.status(200).send(user)
+            res.status(200).send(req.user)
 
         } catch (error) {
             res.status(400).send()
         }
     })
 
-    router.delete('/:id', async(req, res) => {
+    router.delete('/me', auth, async(req, res) => {
         try {
-            const user = await User.findByIdAndDelete(req.params.id)
+            // const user = await User.findByIdAndDelete(req.user._id)
 
-            if (!user) {
-                return res.status(404).send()
-            }
+            // if (!user) {
+            //     return res.status(404).send()
+            // }
 
-            res.send(user)
+            await req.user.remove()
+
+            res.send(req.user)
 
         } catch (error) {
             res.status(500).send()
