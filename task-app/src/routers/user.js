@@ -1,5 +1,6 @@
 import express from "express";
 import { User } from "../models/user.js";
+import { auth } from "../middleware/auth.js"
 
 const router = new express.Router()
 
@@ -10,7 +11,8 @@ export const userRouter = (app) => {
 
         try {
             await user.save()
-            res.status(201).send(user)
+            const token = await user.generateAuthToken()
+            res.status(201).send({ user, token })
         } catch (e) {
             res.status(400).send(e)
 
@@ -20,13 +22,14 @@ export const userRouter = (app) => {
     router.post('/login', async(req, res) => {
         try {
             const user = await User.findByCredentials(req.body.email, req.body.password)
-            res.send(user)
+            const token = await user.generateAuthToken()
+            res.send({ user, token })
         } catch (error) {
             res.status(400).send()
         }
     })
 
-    router.get('', async(req, res) => {
+    router.get('', auth, async(req, res) => {
 
         try {
             const users = await User.find({})
