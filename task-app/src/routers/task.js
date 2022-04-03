@@ -1,12 +1,16 @@
 import express from "express";
 import { Task } from "../models/task.js";
+import { auth } from '../middleware/auth.js'
 
 const router = new express.Router()
 
 export const taskRouter = (app) => {
 
-    router.post('', async(req, res) => {
-        const task = new Task(req.body)
+    router.post('', auth, async(req, res) => {
+        const task = new Task({
+            ...req.body,
+            owner: req.user._id
+        })
 
         try {
             await task.save()
