@@ -14,6 +14,7 @@ export const auth = async(req, res, next) => {
             throw new Error()
         }
 
+        req.token = newToken
         req.user = user
         next()
     } catch (error) {
