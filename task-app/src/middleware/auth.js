@@ -5,7 +5,7 @@ export const auth = async(req, res, next) => {
     try {
         const token = req.header('Authorization').split(' ')
         const newToken = token[1].replace('/t', '')
-        const decoded = jwt.verify(newToken, 'pedrofragahasler')
+        const decoded = jwt.verify(newToken, process.env.JWT_SECRET)
 
         const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
         console.log('1')
