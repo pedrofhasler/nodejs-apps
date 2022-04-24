@@ -17,12 +17,18 @@
     "main": "app.js",
     "scripts": {
         "start": "node src/index.js",
-        "dev": "env-cmd ./config/dev.env nodemon src/index.js"
+        "dev": "env-cmd ./config/dev.env nodemon src/index.js",
+        "test": "env-cmd ./config/test.env jest --watch --runInBand"
+    },
+    "jest": {
+        "testEnvironment": "node"
     },
     "author": "Pedro Hasler",
     "license": "ISC",
     "devDependencies": {
+        "env-cmd": "^10.1.0",
+        "jest": "^27.5.1",
         "nodemon": "^2.0.15",
-        "env-cmd": "^10.1.0"
+        "supertest": "^6.2.2"
     }
 }
